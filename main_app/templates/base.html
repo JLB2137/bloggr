@@ -5,28 +5,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Cat Collector</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
+    <title>Bloggr App</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
   </head>
   <body>
     <header class="navbar-fixed">
       <nav>
-        <div class="nav-wrapper">
-          <ul>
-            <li>
-              <a href="/" class="left brand-logo">&nbsp;&nbsp;CatCollector</a>
-            </li>
-          </ul>
+        <div class="app-title-wrapper">
+            <a href="/" id="app-title">Bloggr</a>
+        </div>
+        <div class="pages-wrapper">
+          <a href="/posts">Posts</a>
+        </div>
+        <div class="profile-wrapper">
+          <a href="/Profile">Profile</a>
         </div>
       </nav>
     </header>
     <main class="container">{% block content %} {% endblock %}</main>
     <footer class="page-footer">
       <div class="right">
-        All Rights Reserved, &copy; 2019 Cat Collector &nbsp;
+        All Rights Reserved, &copy; 2022 Bloggr App &nbsp;
       </div>
     </footer>
   </body>
