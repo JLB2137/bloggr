@@ -14,8 +14,26 @@ nav {
     align-items: center;
 }
 
+.app-title-wrapper {
+    width: 33.33%;
+}
+
+.pages-wrapper {
+    width: 33.33%;
+    text-align: center;
+
+}
+
+.profile-wrapper {
+    width: 33.33%;
+    text-align: right;
+
+}
+
 #app-title {
     font-size: 40px;
     text-decoration: none;
     color: white;
 }
+
+
