@@ -7,3 +7,15 @@ header {
     width: 100%;
     margin: 0 0;
 }
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#app-title {
+    font-size: 40px;
+    text-decoration: none;
+    color: white;
+}
