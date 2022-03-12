@@ -5,7 +5,9 @@
 
 {%if user %}
 <h1>Username: {{user.username}}</h1>
-<h1>Last Login: {{user.last_login}}</h1>
+<p>Last Login: {{user.last_login}}</p>
+<a href="{% url 'password_change' %}">Change Password</a>
+
 {% endif %}
 
 
