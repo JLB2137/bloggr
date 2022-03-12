@@ -17,4 +17,12 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('index')
+            return redirect('home')
+        else:
+            error_message = 'Invalid signup'
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message,}
+    return render(request, 'registration/signup.html',context)
+
+def profile(request):
+    return render(request, 'profile.html')
