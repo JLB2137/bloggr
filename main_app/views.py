@@ -1,14 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from .models import Post
 
 # Create your views here.
-
-def home(request):
-    return render(request,'home.html')
-
-def about(request):
-    return render(request, 'about.html')
 
 def signup(request):
     error_message = ''
@@ -26,3 +21,14 @@ def signup(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+
+# ++++++++++++++++++++++++++++++
+
+def post_list(request):
+    posts = Post.published.all()
+    return render(request,'post_list.html',{'posts':posts})
+
+def post_detail(request, post):
+    post=get_object_or_404(Post,slug=post,status='published')
+    return render(request, 'post_detail.html',{'post':post})
