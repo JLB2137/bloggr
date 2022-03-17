@@ -23,9 +23,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-primary border-bottom">
     <div class="container">
       <a class="navbar-brand text-white" href="/">Bloggr</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
            
@@ -37,7 +35,7 @@
              <li>
                <a class="dropdown-item {% if request.path == '/tag/python/' %}active{% endif %}" href="{{ request.scheme }}://{{ request.get_host }}/tag/python/">Python</a>
              </li>
-             
+
              <li>
                <a class="dropdown-item {% if request.path == '/tag/react/' %}active{% endif %}" href="{{ request.scheme }}://{{ request.get_host }}/tag/react/">React</a>
              </li>
@@ -48,7 +46,14 @@
         <form class="d-flex" action="/">
           <input class="form-control mr-3" type="search" value="{{request.GET.q}}" name="q" placeholder="Search" aria-label="Search">
         </form>
-       
+        {%if user.is_authenticated%}
+        <p>{{user.username}}</p>
+        <a class="nav-link  text-white" href="{% url 'main_app:profile' %}"></a>
+        <a class="nav-link  text-white" href="{% url 'main_app:logout' %}">Log Out</a>
+        {%else%}
+        <a class="nav-link  text-white" href="{% url 'main_app:login' %}">Log In</a>
+        <a class="nav-link  text-white" href="{% url 'main_app:signup' %}">Sign Up</a>
+        {%endif%}
  
       </div>
     </div>
@@ -60,10 +65,7 @@
           Search Results for "{{ request.GET.q }}"
         {% endif %}
       </h2>
-
-
         {% block content %}
-
         {% endblock content %}
     </main>
   <!-- Option 1: Bootstrap Bundle with Popper -->
