@@ -24,6 +24,9 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
 
+def get_absolute_url(self):
+    return reverse('main_app:profile.html')
+
 
 
 # +++++++++++++++++++++++++++++++++++++++++++

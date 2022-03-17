@@ -7,6 +7,9 @@ from taggit.models import Tag
 from django.db.models import Count
 from django.db.models import Q
 
+
+from django.contrib.auth import logout
+
 # Create your views here.
 
 def home(request):
@@ -31,6 +34,17 @@ def signup(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+def login(request):
+    return render(request, 'login.html')
+
+def logoutUser(request):
+    logout(request)
+    template = 'base.html'
+    return render(request, template)
+
+
+
 
 # ++++++++++++++++++++++++++++++
 

@@ -7,7 +7,11 @@ urlpatterns = [
     
     path('accounts/signup/', views.signup, name='signup'),
     path('profile/', views.profile, name='profile'),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logoutUser, name='logout'),
     
+ 
+
     path('',views.post_list,name="post_list"),
     path('<slug:post>/',views.post_detail,name="post_detail"),
     path('comment/reply/', views.reply_page, name="reply"),
