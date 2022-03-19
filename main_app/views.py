@@ -9,13 +9,20 @@ from django.db.models import Q
 
 #Eric's contribution
 
+
+from django.views.generic import (CreateView)
+
+
+
+
+
 # Create your views here.
 
-def home(request):
-    return render(request,'home.html')
+# def home(request):
+#     return render(request,'home.html')
 
-def about(request):
-    return render(request, 'about.html')
+# def about(request):
+#     return render(request, 'about.html')
 
 def signup(request):
     error_message = ''
@@ -34,7 +41,34 @@ def signup(request):
 def profile(request):
     return render(request, 'profile.html')
 
+<<<<<<< HEAD
+=======
+def login(request):
+    return render(request, 'registration/login.html')
+
+def logoutUser(request):
+    logout(request)
+    template = 'base.html'
+    return render(request, template)
+
+
+
+
+>>>>>>> 11aef3b7c63f093271f9ec0c8400a5f1d5627b83
 # ++++++++++++++++++++++++++++++
+
+class PostCreate(CreateView):
+    model = Post
+    fields = ('title', 'slug','author','body','tags', 'publish' )
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+
+
+
 
 def post_list(request, tag_slug=None):
     posts = Post.published.all()
@@ -54,7 +88,7 @@ def post_list(request, tag_slug=None):
     return render(request,'post_list.html',{'posts':posts})
 
 def post_detail(request, post):
-    post=get_object_or_404(Post,slug=post,status='published')
+    post = get_object_or_404(Post,slug=post,status='published')
     # List of active comments for this post
     comments = post.comments.filter(active=True)
     new_comment = None
