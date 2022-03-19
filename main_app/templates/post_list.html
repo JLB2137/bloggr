@@ -12,6 +12,10 @@
                 <div class="col-md-5">
                     <div class="ratio ratio-16x9">
                         <img class="rounded" src="{{photo.url}}">
+                        {% for photo in post.photo_set.all %}
+                        <img class="rounded featured-image-list"
+                         alt="{{post.title}}" src="{{photo.url}}">
+                        {% endfor %}
                         <!-- <img src="https://via.placeholder.com/1280x720" class="rounded" alt="{{post.title}}"> -->
                     </div>
                 </div>
