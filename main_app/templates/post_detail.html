@@ -5,7 +5,12 @@
 {% block content %}
     <article>
         <figure>
-         <img src="https://via.placeholder.com/1280x720" class="rounded" alt="{{post.title}}">
+        {% for photo in post.photo_set.all %}
+            <img class="rounded" 
+            alt="{{post.title}}" src="{{photo.url}}">
+        {% endfor %}
+         <!-- <img src="https://via.placeholder.com/1280x720" class="rounded" alt="{{post.title}}"> -->
+         
         </figure>
         <div class="mt-3">
             <h1>{{post.title}}</h1>

@@ -8,3 +8,7 @@ article img{
     height: auto !important;
     border-radius: .25rem!important;
 }
+
+.featured-image-list{
+    object-fit: cover;
+}

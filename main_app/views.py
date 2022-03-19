@@ -7,8 +7,14 @@ from taggit.models import Tag
 from django.db.models import Count
 from django.db.models import Q
 
+import uuid
+import boto3
 
 from django.contrib.auth import logout
+
+
+S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
+BUCKET = 'bloggr-phoenix'
 
 # Create your views here.
 
@@ -17,6 +23,36 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def add_photo(request, post_id):
+    
+    photo_file = request.FILES.get('photo-file')
+    
+    
+    if photo_file:
+        
+        s3 = boto3.client('s3')
+        
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+       
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+
+            photo = Photo(url=url, post_id=post_id)
+            
+            photo.save()
+            
+        except Exception as error:
+            print('*************************')
+            print('An error occurred while uploading to S3')
+            print(error)
+            print('*************************')
+            
+        
+    return redirect('main_app:post_detail', post_id=post_id)
+
 
 def signup(request):
     error_message = ''
