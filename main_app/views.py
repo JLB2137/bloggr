@@ -34,13 +34,6 @@ def signup(request):
 def profile(request):
     return render(request, 'profile.html')
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-def login(request):
-    return render(request, 'registration/login.html')
-=======
->>>>>>> master
 
 def logoutUser(request):
     logout(request)
@@ -50,8 +43,6 @@ def logoutUser(request):
 
 
 
->>>>>>> 11aef3b7c63f093271f9ec0c8400a5f1d5627b83
-# ++++++++++++++++++++++++++++++
 
 def post_list(request, tag_slug=None):
     posts = Post.published.all()
