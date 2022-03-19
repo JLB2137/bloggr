@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Post, Comment
-from .forms import CommentForm, CustomUserCreationForm
+from .forms import CommentForm, CustomUserCreationForm, CustomUserCreationForm2
 from taggit.models import Tag
 from django.db.models import Count
 from django.db.models import Q
@@ -25,7 +25,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('/')
         else:
             error_message = 'Invalid signup'
     form = CustomUserCreationForm()
@@ -35,8 +35,6 @@ def signup(request):
 def profile(request):
     return render(request, 'profile.html')
 
-def login(request):
-    return render(request, 'login.html')
 
 def logoutUser(request):
     logout(request)

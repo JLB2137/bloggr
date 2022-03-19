@@ -47,11 +47,10 @@
           <input class="form-control mr-3" type="search" value="{{request.GET.q}}" name="q" placeholder="Search" aria-label="Search">
         </form>
         {%if user.is_authenticated%}
-        <p>{{user.username}}</p>
-        <a class="nav-link  text-white" href="{% url 'main_app:profile' %}"></a>
+        <a class="nav-link  text-white" href="{% url 'main_app:profile' %}">My Profile</a>
         <a class="nav-link  text-white" href="{% url 'main_app:logout' %}">Log Out</a>
         {%else%}
-        <a class="nav-link  text-white" href="{% url 'main_app:login' %}">Log In</a>
+        <a class="nav-link  text-white" href="{% url 'login' %}">Log In</a>
         <a class="nav-link  text-white" href="{% url 'main_app:signup' %}">Sign Up</a>
         {%endif%}
  
