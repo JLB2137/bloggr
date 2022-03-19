@@ -2,10 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Post, Comment
-from .forms import CommentForm
+from .forms import CommentForm, CustomUserCreationForm, CustomUserCreationForm2
 from taggit.models import Tag
 from django.db.models import Count
 from django.db.models import Q
+
+
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -18,19 +21,28 @@ def about(request):
 def signup(request):
     error_message = ''
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('/')
         else:
             error_message = 'Invalid signup'
-    form = UserCreationForm()
+    form = CustomUserCreationForm()
     context = {'form': form, 'error_message': error_message,}
     return render(request, 'registration/signup.html',context)
 
 def profile(request):
     return render(request, 'profile.html')
+
+
+def logoutUser(request):
+    logout(request)
+    template = 'base.html'
+    return render(request, template)
+
+
+
 
 # ++++++++++++++++++++++++++++++
 
