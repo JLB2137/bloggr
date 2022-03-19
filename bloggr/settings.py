@@ -208,8 +208,4 @@ CKEDITOR_CONFIGS = {
             'codesnippet',
         ]),
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> anton_dev
