@@ -10,13 +10,20 @@ from django.db.models import Q
 
 from django.contrib.auth import logout
 
+
+from django.views.generic import (CreateView)
+
+
+
+
+
 # Create your views here.
 
-def home(request):
-    return render(request,'home.html')
+# def home(request):
+#     return render(request,'home.html')
 
-def about(request):
-    return render(request, 'about.html')
+# def about(request):
+#     return render(request, 'about.html')
 
 def signup(request):
     error_message = ''
@@ -48,6 +55,19 @@ def logoutUser(request):
 
 # ++++++++++++++++++++++++++++++
 
+class PostCreate(CreateView):
+    model = Post
+    fields = ('title', 'slug','author','body','tags', 'publish' )
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+
+
+
+
 def post_list(request, tag_slug=None):
     posts = Post.published.all()
 
@@ -66,7 +86,7 @@ def post_list(request, tag_slug=None):
     return render(request,'post_list.html',{'posts':posts})
 
 def post_detail(request, post):
-    post=get_object_or_404(Post,slug=post,status='published')
+    post = get_object_or_404(Post,slug=post,status='published')
     # List of active comments for this post
     comments = post.comments.filter(active=True)
     new_comment = None
