@@ -9,14 +9,6 @@ from django.db.models import Q
 
 #Eric's contribution
 
-from django.contrib.auth.models import User
-from django.views.generic import ListView
-from .models import Preference
-import sys
-
-
-
-
 # Create your views here.
 
 def home(request):
@@ -114,37 +106,10 @@ def reply_page(request):
 
 #Reese contribution to create and post forms
 
-class PostListView( ListView):
-    model = Post
-    template_name = 'blog/home.html'
-    context_object_name = 'posts'
-    ordering = ['-date_posted']
-    
+# class Tweets(models.Model):
+#     content = models.TextField(max_length=1000)
+#     date_posted = models.DateTimeField(default=timezone.now)
+#     author = models.ForeignKey(User, on_delete=models.CASCADE)
+#     likes= models.IntegerField(default=0)
+#     dislikes= models.IntegerField(default=0)
 
-    def get_context_data(self, **kwargs):
-        data = super().get_context_data(**kwargs)
-
-        all_users = []
-        data_counter = Post.objects.values('author')\
-            .annotate(author_count=Count('author'))\
-            .order_by('-author_count')[:6]
-
-        for aux in data_counter:
-            all_users.append(User.objects.filter(pk=aux['author']).first())
-        # if Preference.objects.get(user = self.request.user):
-        #     data['preference'] = True
-        # else:
-        #     data['preference'] = False
-        data['preference'] = Preference.objects.all()
-        # print(Preference.objects.get(user= self.request.user))
-        data['all_users'] = all_users
-        print(all_users, file=sys.stderr)
-        return data
-
-    def get_queryset(self):
-        user = self.request.user
-        qs = Follow.objects.filter(user=user)
-        follows = [user]
-        for obj in qs:
-            follows.append(obj.follow_user)
-        return Post.objects.filter(author__in=follows).order_by('-date_posted')
