@@ -32,7 +32,6 @@ def get_absolute_url(self):
 # +++++++++++++++++++++++++++++++++++++++++++
 
 
-
 # creating model manager
 class PublishedManager(models.Manager):
     def get_queryset(self):
