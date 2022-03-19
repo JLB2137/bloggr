@@ -126,7 +126,7 @@ STATICFILES_DIRS = [
 ]
 
 #Direct the user back to the home page after login
-LOGIN_REDIRECT_URL = '/posts/'
+LOGIN_REDIRECT_URL = '/'
 
 #Direct the user back to home page after logout
 LOGOUT_REDIRECT_URL = '/'

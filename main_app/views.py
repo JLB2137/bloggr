@@ -2,39 +2,32 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Post, Comment
-from .forms import CommentForm
+from .forms import CommentForm, CustomUserCreationForm, CustomUserCreationForm2
 from taggit.models import Tag
 from django.db.models import Count
 from django.db.models import Q
 
 #Eric's contribution
 
-
-from django.views.generic import (CreateView)
-
-
-
-
-
 # Create your views here.
 
-# def home(request):
-#     return render(request,'home.html')
+def home(request):
+    return render(request,'home.html')
 
-# def about(request):
-#     return render(request, 'about.html')
+def about(request):
+    return render(request, 'about.html')
 
 def signup(request):
     error_message = ''
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('/')
         else:
             error_message = 'Invalid signup'
-    form = UserCreationForm()
+    form = CustomUserCreationForm()
     context = {'form': form, 'error_message': error_message,}
     return render(request, 'registration/signup.html',context)
 
@@ -42,9 +35,12 @@ def profile(request):
     return render(request, 'profile.html')
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 def login(request):
     return render(request, 'registration/login.html')
+=======
+>>>>>>> master
 
 def logoutUser(request):
     logout(request)
@@ -56,19 +52,6 @@ def logoutUser(request):
 
 >>>>>>> 11aef3b7c63f093271f9ec0c8400a5f1d5627b83
 # ++++++++++++++++++++++++++++++
-
-class PostCreate(CreateView):
-    model = Post
-    fields = ('title', 'slug','author','body','tags', 'publish' )
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
-
-
-
-
 
 def post_list(request, tag_slug=None):
     posts = Post.published.all()
@@ -88,7 +71,7 @@ def post_list(request, tag_slug=None):
     return render(request,'post_list.html',{'posts':posts})
 
 def post_detail(request, post):
-    post = get_object_or_404(Post,slug=post,status='published')
+    post=get_object_or_404(Post,slug=post,status='published')
     # List of active comments for this post
     comments = post.comments.filter(active=True)
     new_comment = None
