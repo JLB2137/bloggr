@@ -4,7 +4,9 @@
 <h1>Home</h1>
 
 {%if user %}
-<h1>Welcome to Bloggr!</h1>
+<h1>Username: {{user.username}}</h1>
+<h1>Email: {{user.email}}</h1>
+<h1>{{user.password}}</h1>
 {% endif %}
 
 

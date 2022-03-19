@@ -1,9 +1,4 @@
 from django import forms
-from django.contrib.auth.models import User  
-from django.contrib.auth.forms import UserCreationForm  
-from django.core.exceptions import ValidationError  
-from django.forms.fields import EmailField  
-from django.forms.forms import Form  
 from .models import Comment
 
 class CommentForm(forms.ModelForm):
@@ -17,16 +12,3 @@ class CommentForm(forms.ModelForm):
         self.fields['name'].widget.attrs = {'placeholder': 'Enter name','class':'form-control'}
         self.fields['email'].widget.attrs = {'placeholder': 'Enter email', 'class':'form-control'}
         self.fields['body'].widget.attrs = {'placeholder': 'Comment here...', 'class':'form-control', 'rows':'5'}
-  
-class CustomUserCreationForm(UserCreationForm):
-    first_name = forms.CharField(label='first_name')  
-    last_name = forms.CharField(label='last_name')
-
-    class Meta:
-        model = User
-        fields = ('username', 'password1', 'password2', 'email', 'first_name', 'last_name')
-
-class CustomUserCreationForm2(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ('username', 'password1')
