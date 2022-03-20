@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #this code
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "main_app/static",
 ]
 
 #Direct the user back to the home page after login
