@@ -63,7 +63,7 @@ def signup(request):
             login(request, user)
             return redirect('/')
         else:
-            error_message = 'Invalid signup'
+            error_message = list(form.errors.get_json_data().values())[0][0]['message']
     form = CustomUserCreationForm()
     context = {'form': form, 'error_message': error_message,}
     return render(request, 'registration/signup.html',context)
