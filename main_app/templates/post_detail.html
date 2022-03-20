@@ -43,7 +43,10 @@
         <div class="col-md-6 col-sm-6 col-lg-4 mb-3">
             <div class="card border-0">
                 <div class="ratio ratio-16x9">
-                    <img src="{{ post.image.url }}" class="rounded featured-image-list" alt="{{post.title}}">
+                    {% for photo in post.photo_set.all %}
+                    <img class="rounded" 
+                    alt="{{post.title}}" src="{{photo.url}}">
+                    {% endfor %}
                 </div>
                 <div class="card-body p-0 m-0 mt-2">
                     <h2 class="card-title h6 my-0 py-0">
