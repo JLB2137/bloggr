@@ -24,8 +24,8 @@ class CommentForm(forms.ModelForm):
         self.fields['body'].widget.attrs = {'placeholder': 'Comment here...', 'class':'form-control', 'rows':'5'}
   
 class CustomUserCreationForm(UserCreationForm):
-    first_name = forms.CharField(label='first_name')  
-    last_name = forms.CharField(label='last_name')
+    first_name = forms.CharField(label='First Name')  
+    last_name = forms.CharField(label='Last Name')
 
     class Meta:
         model = User
