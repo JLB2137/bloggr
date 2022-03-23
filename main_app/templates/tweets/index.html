@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Tweet List</h1>
+
+{% for tweet in tweets %}
+<div class="card">
+    <a href="{% url 'detail' tweet.id %}">
+        <div class="card-content">
+            <span class="card-title">{{ author.name }}</span>
+            <p>Content: {{ tweet.content }}</p>
+            
+        </div>
+    </a>
+</div>
+{% endfor %} {% endblock %}
