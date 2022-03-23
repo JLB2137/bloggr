@@ -6,6 +6,9 @@ from .forms import CommentForm, CustomUserCreationForm, CustomUserCreationForm2
 from taggit.models import Tag
 from django.db.models import Count
 from django.db.models import Q
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
 
 import uuid
 import boto3
@@ -147,3 +150,10 @@ def reply_page(request):
             return redirect(post_url+'#'+str(reply.id))
 
     return redirect("/")
+
+
+class AddPostView(CreateView):
+    model = Post
+    template_name = "main_app/post_form.html"
+    fields = '__all__'
+
