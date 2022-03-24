@@ -10,6 +10,9 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from django.urls import reverse_lazy
+from django.contrib import messages
+
 import uuid
 import boto3
 
@@ -162,9 +165,14 @@ class UpdatePostView(UpdateView):
     template_name = "main_app/update_post.html"
     fields = '__all__'
 
-# class DeletePostView(DeleteView):
-#     model = Post
-#     fields = '__all__'
 
+class PostDeleteView(DeleteView):
+    model = Post
 
+    def get_success_url(self):
+        messages.success(
+            self.request, 'Your post has been deleted successfully.')
+        return reverse_lazy("main_app:post_detail")
 
+    def get_queryset(self):
+        return self.model.objects.filter(author=self.request.user)
