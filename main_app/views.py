@@ -8,7 +8,10 @@ from django.db.models import Count
 from django.db.models import Q
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+from django.urls import reverse_lazy
+from django.contrib import messages
 
 import uuid
 import boto3
@@ -157,3 +160,13 @@ class AddPostView(CreateView):
     template_name = "main_app/post_form.html"
     fields = '__all__'
 
+class UpdatePostView(UpdateView):
+    model = Post
+    template_name = "main_app/update_post.html"
+    fields = '__all__'
+
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = "main_app/post_confirm_delete.html"
+    success_url = reverse_lazy('main_app:post_list')
