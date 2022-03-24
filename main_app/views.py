@@ -8,7 +8,7 @@ from django.db.models import Count
 from django.db.models import Q
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 import uuid
 import boto3
@@ -156,4 +156,15 @@ class AddPostView(CreateView):
     model = Post
     template_name = "main_app/post_form.html"
     fields = '__all__'
+
+class UpdatePostView(UpdateView):
+    model = Post
+    template_name = "main_app/update_post.html"
+    fields = '__all__'
+
+# class DeletePostView(DeleteView):
+#     model = Post
+#     fields = '__all__'
+
+
 
