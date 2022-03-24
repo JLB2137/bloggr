@@ -16,6 +16,7 @@
             <h1>{{post.title}}</h1>
             
             <a class="nav-link  text-green" href="{% url 'main_app:post_update' post.id %}">Update Tweet</a>
+            <a class="nav-link text-green" href="{% url 'main_app:post_delete' post.id %}">Delete Tweet</a>
             <p class="text-muted">
                 Published {{ post.publish.date }} by <strong>{{ post.author }}</strong>
             </p>
