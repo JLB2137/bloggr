@@ -42,7 +42,7 @@
            </ul>
          </li>
          {%if user.is_authenticated%}
-         <a class="nav-link  text-white" href="{% url 'main_app:post_create' %}">Create Tweet</a>
+         <a type="button" class="btn btn-light" href="{% url 'main_app:post_create' %}">Create Tweet</a>
          
          {%else%}
          {%endif%} 
