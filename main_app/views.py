@@ -22,13 +22,6 @@ from django.contrib.auth import logout
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'bloggr-phoenix'
 
-# Create your views here.
-
-def home(request):
-    return render(request,'home.html')
-
-def about(request):
-    return render(request, 'about.html')
 
 def add_photo(request, post_id):
     
@@ -83,10 +76,6 @@ def logoutUser(request):
     template = 'base.html'
     return render(request, template)
 
-
-
-
-# ++++++++++++++++++++++++++++++
 
 def post_list(request, tag_slug=None):
     posts = Post.published.all()

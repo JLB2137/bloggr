@@ -17,9 +17,6 @@ urlpatterns = [
     path('comment/reply/', views.reply_page, name="reply"),
     path('tag/<slug:tag_slug>/',views.post_list, name='post_tag'),
 
-    path('posts/<int:post_id>/add_photo/', views.add_photo, name='add_photo'),
-
-
     path('post/create/', AddPostView.as_view(), name='post_create'),
     path('post/update/<int:pk>/', UpdatePostView.as_view(), name='post_update'),
     path('post/delete/<int:pk>/', PostDeleteView.as_view(), name='post_delete'),

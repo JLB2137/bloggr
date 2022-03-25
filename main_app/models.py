@@ -31,7 +31,7 @@ class Post(models.Model):
     ('published', 'Published'),
     )
     title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250, unique_for_date='publish')
+    slug = models.SlugField(null=False, unique=True)
     author = models.ForeignKey(User,on_delete=models.CASCADE,related_name='main_app_posts')
     body=RichTextUploadingField()
     publish = models.DateTimeField(default=timezone.now)
