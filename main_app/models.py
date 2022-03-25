@@ -31,6 +31,7 @@ class Post(models.Model):
     ('published', 'Published'),
     )
     title = models.CharField(max_length=250)
+    header_image = models.ImageField(null=True, blank=True, upload_to='images/')
     slug = models.SlugField(null=False, unique=True)
     author = models.ForeignKey(User,on_delete=models.CASCADE,related_name='main_app_posts')
     body=RichTextUploadingField()
