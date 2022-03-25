@@ -11,12 +11,12 @@
             <div class="row g-0">
                 <div class="col-md-5">
                     <div class="ratio ratio-16x9">
-                        <img class="rounded" src="{{photo.url}}">
-                        {% for photo in post.photo_set.all %}
+                        <img class="rounded" src="{{post.header_image.url}}">
+                        {% for photo in post.header_image %}
                         <img class="rounded featured-image-list"
-                         alt="{{post.title}}" src="{{photo.url}}">
+                         src="{{ post.header_image.url }}
                         {% endfor %}
-                        <!-- <img src="https://via.placeholder.com/1280x720" class="rounded" alt="{{post.title}}"> -->
+                        <!-- <img src="https://via.placeholder.com/1280x720" class="rounded" > -->
                     </div>
                 </div>
                 <div class="col-md-7 ps-md-3 pt-3 pt-md-0 d-flex flex-column">

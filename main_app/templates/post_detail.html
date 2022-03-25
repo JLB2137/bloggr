@@ -5,10 +5,10 @@
 {% block content %}
     <article>
         <figure>
-        {% for photo in post.photo_set.all %}
+        
             <img class="rounded" 
-            alt="{{post.title}}" src="{{photo.url}}">
-        {% endfor %}
+            alt="{{post.title}}" src="{{ post.header_image.url }}">
+        
          <!-- <img src="https://via.placeholder.com/1280x720" class="rounded" alt="{{post.title}}"> -->
          
         </figure>
@@ -30,9 +30,10 @@
         </div>
         <a type="button" class="btn btn-warning" href="{% url 'main_app:post_update' post.pk %}">Update Tweet</a>
         <a type="button" class="btn btn-danger" href="{% url 'main_app:post_delete' post.pk %}">Delete Tweet</a>
-
+        <br><br>
+        <hr>
         <div class="article-body">
-                {{post.body|safe}}
+            {{post.body|safe}}
         </div>
     </article>
     
@@ -46,9 +47,9 @@
         <div class="col-md-6 col-sm-6 col-lg-4 mb-3">
             <div class="card border-0">
                 <div class="ratio ratio-16x9">
-                    {% for photo in post.photo_set.all %}
+                    {% for photo in post.header_image %}
                     <img class="rounded" 
-                    alt="{{post.title}}" src="{{photo.url}}">
+                    alt="{{post.title}}" src="{{post.header_image.url}}">
                     {% endfor %}
                 </div>
                 <div class="card-body p-0 m-0 mt-2">

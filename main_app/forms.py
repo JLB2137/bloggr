@@ -4,12 +4,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError  
 from django.forms.fields import EmailField  
 from django.forms.forms import Form  
-from .models import Comment
+from .models import Comment, Post
 
-# class TweetForm(forms.ModelForm):
-#     class Meta:
-#         model = Tweet
-#         fields = ('content', 'author')
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
