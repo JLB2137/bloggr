@@ -1,0 +1,1 @@
+WSGI_APPLICATION = 'bloggr.wsgi.application'
